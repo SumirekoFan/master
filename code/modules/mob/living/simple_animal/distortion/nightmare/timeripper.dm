@@ -67,11 +67,7 @@
 
 /mob/living/simple_animal/hostile/distortion/timeripper/proc/DashCounter() //increases move speed greatly temporarily.
 	playsound(get_turf(src), 'sound/effects/hokma_meltdown.ogg', 75, 0, 3)
-	switch(current_stage)
-		if(1)
-			icon_state = "ripper1"
-		if(2)
-			icon_state = "ripper2"
+	icon_state = "ripper[current_stage]"
 	countering = TRUE
 	counter_ready = FALSE
 	//Speed becomes 4 or 2 and returns to 6 or 4 after 4 seconds.
