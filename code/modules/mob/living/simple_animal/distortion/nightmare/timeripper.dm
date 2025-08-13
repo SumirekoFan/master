@@ -26,7 +26,7 @@
 	//The EGO worn by the egoist
 	ego_list = list(
 		/obj/item/clothing/suit/armor/ego_gear/he/nixie,
-		/datum/ego_datum/weapon/thirteen
+		/obj/item/ego_weapon/thirteen
 		)
 	//The egoist's name, if specified. Otherwise picks a random name.
 	egoist_names = list("Jack Knife")
@@ -44,14 +44,14 @@
 	var/current_stage = 1 //changes behaviour slightly on phase 2
 	var/stage_threshold = 3000 // enters stage 2 at or below this threshold
 	var/countering = FALSE //are we
-	var/nodehead = FALSE
+	var/nodehead = FALSE //It's use I believe is to be able to disable the dehead by var editing the value.
 	var/nightmare_mode = FALSE
 	var/counter_threshold = 500 //300 at stage 2
 	var/counter_ready = FALSE //are we ready to counter?
-	var/damage_down = 5
+	var/damage_up = 5
 	var/counter_speed = 2 //subtracted from the movedelay when dashing
 	var/finishing = FALSE
-	var/damage_taken
+	var/damage_taken = 0
 	var/frozen_time = 60 SECONDS
 
 /mob/living/simple_animal/hostile/distortion/timeripper/proc/StageTransition()
@@ -67,7 +67,11 @@
 
 /mob/living/simple_animal/hostile/distortion/timeripper/proc/DashCounter() //increases move speed greatly temporarily.
 	playsound(get_turf(src), 'sound/effects/hokma_meltdown.ogg', 75, 0, 3)
-	icon_state = "ripper[current_stage]"
+	switch(current_stage)
+		if(1)
+			icon_state = "ripper1"
+		if(2)
+			icon_state = "ripper2"
 	countering = TRUE
 	counter_ready = FALSE
 	//Speed becomes 4 or 2 and returns to 6 or 4 after 4 seconds.
@@ -112,44 +116,59 @@
 
 /mob/living/simple_animal/hostile/distortion/timeripper/AttackingTarget(atom/attacked_target)
 	. = ..()
+	if(!.)
+		return
+	// Already doing this.
+	if(finishing)
+		return FALSE
+	// Don't decapitate NPCs
+	if(!istype(attacked_target, /mob/living/carbon/human))
+		return
+
+	var/mob/living/carbon/human/H = attacked_target
+	if(H.health > 0) // Don't execute if they're not DYING
+		return
+
+	finishing = TRUE
+	icon = 'ModularTegustation/Teguicons/ripper64x64.dmi'
+	icon_state = "ripper2"
+	playsound(get_turf(src), 'sound/hallucinations/wail.ogg', 50, 1)
+	SLEEP_CHECK_DEATH(5)
+	melee_damage_lower += damage_up
+	melee_damage_upper += damage_up
+	//Mmm, head.
+	if(nodehead)
+		H.gib()
+	else
+		var/obj/item/bodypart/head/head = H.get_bodypart("head")
+		if(QDELETED(head))
+			return
+		head.dismember()
+		QDEL_NULL(head)
+		H.regenerate_icons()
+		visible_message(span_danger("\The [src] takes [H]'s head off into his collection!"))
+		new /obj/effect/gibspawner/generic/silent(get_turf(H))
+		playsound(get_turf(src), 'sound/weapons/bladeslice.ogg', 250, TRUE)
+		finishing = FALSE
+		if(current_stage == 1)
+			icon = 'ModularTegustation/Teguicons/ripper32x64.dmi'
+		icon_state = "ripper[current_stage]"
+		return
+	. = ..()
 	if(.)
-		if(finishing)
-			return FALSE
 		if(!istype(attacked_target, /mob/living/carbon/human))
 			return
-		var/mob/living/carbon/human/H = attacked_target
-
-		if(H.health < 0)
-
-			finishing = TRUE
-			icon = 'ModularTegustation/Teguicons/ripper64x64.dmi'
-			icon_state = "ripper2"
-			playsound(get_turf(src), 'sound/hallucinations/wail.ogg', 50, 1)
-			SLEEP_CHECK_DEATH(5)
-			melee_damage_lower += damage_down
-			melee_damage_upper += damage_down
-			//Mmm, head.
-			if(nodehead)
-				H.gib()
-			else
-				var/obj/item/bodypart/head/head = H.get_bodypart("head")
-				if(QDELETED(head))
-					return
-				head.dismember()
-				QDEL_NULL(head)
-				H.regenerate_icons()
-				visible_message(span_danger("\The [src] takes [H]'s head off into his collection!"))
-				new /obj/effect/gibspawner/generic/silent(get_turf(H))
-				playsound(get_turf(src), 'sound/weapons/bladeslice.ogg', 250, TRUE)
-				finishing = FALSE
-				switch(current_stage)
-					if(1)
-						icon = 'ModularTegustation/Teguicons/ripper32x64.dmi'
-						icon_state = "ripper1"
-					if(2)
-						icon_state = "ripper2"
-
-
+		H.add_movespeed_modifier(/datum/movespeed_modifier/grab_slowdown/aggressive)
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/grab_slowdown/aggressive), 4 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	if(nightmare_mode)
+		if(!istype(attacked_target, /mob/living/carbon/human))
+			return
+		new /obj/effect/timestop(get_turf(src), 1, 17, list(src))
+		to_chat(H, span_warning("You suddenly freeze in place..."))
+		addtimer(CALLBACK (H, TYPE_PROC_REF(/mob/living, Stun), frozen_time SECONDS), 1 SECONDS)
+	if(finishing)
+		return
+	. = ..()
 /mob/living/simple_animal/hostile/distortion/timeripper/CanAttack(atom/the_target)
 	if(finishing)
 		return FALSE
@@ -165,39 +184,6 @@
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
 	..()
-
-//Melee funnies.
-
-/mob/living/simple_animal/hostile/distortion/timeripper/AttackingTarget(atom/attacked_target)
-	if(finishing)
-		return
-	. = ..()
-	if(.)
-		if(!istype(attacked_target, /mob/living/carbon/human))
-			return
-		var/mob/living/carbon/human/H = attacked_target
-		H.add_movespeed_modifier(/datum/movespeed_modifier/grab_slowdown/aggressive)
-		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/grab_slowdown/aggressive), 4 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
-
-/mob/living/simple_animal/hostile/distortion/timeripper/AttackingTarget(atom/attacked_target)
-	if(finishing)
-		return
-	. = ..()
-	if(nightmare_mode)
-		if(!istype(attacked_target, /mob/living/carbon/human))
-			return
-		new /obj/effect/timestop(get_turf(src), 1, 17, list(src))
-
-/mob/living/simple_animal/hostile/distortion/timeripper/AttackingTarget(atom/attacked_target)
-	if(finishing)
-		return
-	. = ..()
-	var/mob/living/carbon/human/H = attacked_target
-	if(nightmare_mode)
-		if(!istype(attacked_target, /mob/living/carbon/human))
-			return
-		to_chat(H, span_warning("You suddenly freeze in place..."))
-		addtimer(CALLBACK (H, TYPE_PROC_REF(/mob/living, Stun), frozen_time SECONDS), 1 SECONDS)
 
 //Freezing time.
 /mob/living/simple_animal/hostile/distortion/timeripper/proc/Timestop()
