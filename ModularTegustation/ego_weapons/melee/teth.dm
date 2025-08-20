@@ -738,6 +738,32 @@
 	force = initial(force)
 	hitsound = initial(hitsound)
 
+/obj/item/ego_weapon/liminal
+	name = "liminal passage"
+	desc = "A simple wooden chair leg that seems to phase in and out of reality. Looking at it makes you feel like you're falling."
+	special = "This weapon has a 1% chance of breaking when attacking with it."
+	icon = 'icons/obj/chairs.dmi'
+	icon_state = "wooden_chair_toppled"
+	inhand_icon_state = "woodenchair"
+	lefthand_file = 'icons/mob/inhands/misc/chairs_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/misc/chairs_righthand.dmi'
+	force = 30
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("bashes", "phases", "displaces")
+	attack_verb_simple = list("bash", "phase", "displace")
+	hitsound = 'sound/weapons/genhit1.ogg'
+	var/break_chance = 1
+
+/obj/item/ego_weapon/liminal/attack(mob/living/M, mob/living/user)
+	. = ..()
+	if(prob(break_chance))
+		visible_message(span_danger("[src] suddenly explodes and breaks!"))
+		new /obj/effect/temp_visual/explosion(get_turf(src))
+		playsound(loc, 'sound/effects/ordeals/steel/gcorp_boom.ogg', 60, TRUE)
+		for(var/mob/living/L in ohearers(3, src))
+			L.apply_damage(30, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+		qdel(src)
+
 /obj/item/ego_weapon/mini/patch
 	name = "patch"
 	desc = "A little first aid kit."
@@ -747,4 +773,3 @@
 	attack_verb_continuous = list("smacks", "strikes", "beats")
 	attack_verb_simple = list("smack", "strike", "beat")
 	hitsound = 'sound/weapons/fixer/generic/club3.ogg'
-
