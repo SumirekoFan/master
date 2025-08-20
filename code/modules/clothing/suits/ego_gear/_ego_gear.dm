@@ -11,7 +11,7 @@
 	w_class = WEIGHT_CLASS_BULKY								//No more stupid 10 egos in bag
 	allowed = list(/obj/item/gun, /obj/item/ego_weapon, /obj/item/melee)
 	drag_slowdown = 1
-	var/equip_slowdown = 3 SECONDS
+	var/equip_slowdown = 7 SECONDS
 
 	var/obj/item/clothing/head/ego_hat/hat = null // Hat type, see clothing/head/_ego_head.dm
 	var/obj/item/clothing/neck/ego_neck/neck = null // Neckwear, see clothing/neck/_neck.dm
@@ -38,6 +38,14 @@
 	if(slot_flags & slot) // Equipped to right slot, not just in hands
 		if(!CanUseEgo(H))
 			return FALSE
+		for(var/obj/machinery/computer/ego_purchase/A in range(6, equipper))
+			return ..()
+
+		for(var/obj/machinery/smartfridge/extraction_storage/ego_armor/A in range(6, equipper))
+			return ..()
+
+
+
 		if(equip_slowdown > 0 && (M == equipper || !equipper))
 			if(!do_after(H, equip_slowdown, target = H))
 				return FALSE
@@ -61,18 +69,6 @@
 		if(!istype(neckwear, neck))
 			return
 		neckwear.Destroy()
-
-/obj/item/clothing/suit/armor/ego_gear/pickup(mob/user)
-	. = ..()
-	if(!user.has_movespeed_modifier(/datum/movespeed_modifier/too_many_armors) && ishuman(user))
-		var/obj/item/clothing/suit/armor/ego_gear/equipped_armor = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-		if(istype(equipped_armor))
-			if((SSmaptype.maptype in SSmaptype.citymaps) || (SSmaptype.maptype in SSmaptype.combatmaps))
-				return
-			else
-				var/list/slowdown_free_roles = list("Clerk", "Agent Support Clerk", "Facility Support Clerk", "Extraction Officer")
-				if(!(user.mind.assigned_role in slowdown_free_roles))
-					user.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/too_many_armors)
 
 /obj/item/clothing/suit/armor/ego_gear/dropped(mob/user)
 	. = ..()
