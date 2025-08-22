@@ -180,7 +180,7 @@
 		return FALSE
 	if(!died.mind)
 		return FALSE
-	datum_reference.qliphoth_change(-1) // One death reduces it
+	datum_reference.qliphoth_change(-2) // One death reduces it
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
