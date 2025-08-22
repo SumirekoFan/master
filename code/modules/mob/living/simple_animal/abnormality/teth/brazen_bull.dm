@@ -138,7 +138,7 @@
 		for(var/obj/vehicle/V in new_hits)
 			V.take_damage(10, RED_DAMAGE, attack_sound)
 			V.visible_message(span_boldwarning("[src] rams [V]!"))
-
+	playsound(src,'sound/effects/bamf.ogg', 70, TRUE, 20)
 	for(var/turf/open/R in range(1, src))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(R)
 	addtimer(CALLBACK(src, PROC_REF(Charge), move_dir, (times_ran + 1)), 2)
