@@ -368,6 +368,10 @@ SUBSYSTEM_DEF(ticker)
 			iter_human.hardcore_survival_score *= 2 //Double for antags
 		to_chat(iter_human, "<span class='notice'>You will gain [round(iter_human.hardcore_survival_score)] hardcore random points if you survive this round!</span>")
 
+	// Gamespeed vote for LobCorp gamemodes.
+	if((SSmaptype.maptype in SSmaptype.lc_maps) || SSmaptype.maptype == "mini")
+		addtimer(CALLBACK(src, PROC_REF(DoGamespeedVote)), 10 SECONDS)
+
 //These callbacks will fire after roundstart key transfer
 /datum/controller/subsystem/ticker/proc/OnRoundstart(datum/callback/cb)
 	if(!HasRoundStarted())
@@ -684,6 +688,10 @@ SUBSYSTEM_DEF(ticker)
 	log_game("<span class='boldannounce'>Rebooting World. [reason]</span>")
 
 	world.Reboot()
+
+/// Proc that does a gamespeed vote on Lobcorp Gamemodes
+/datum/controller/subsystem/ticker/proc/DoGamespeedVote()
+	SSvote.initiate_vote("gamespeed", null)
 
 /datum/controller/subsystem/ticker/Shutdown()
 	gather_newscaster() //called here so we ensure the log is created even upon admin reboot
