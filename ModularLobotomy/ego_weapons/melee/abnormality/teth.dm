@@ -97,7 +97,7 @@
 
 /obj/item/ego_weapon/regret
 	name = "regret"
-	desc = "Before swinging this weapon, expressing one’s condolences for the demise of the inmate who couldn't even have a funeral would be nice."
+	desc = "Before swinging this weapon, expressing oneâ€™s condolences for the demise of the inmate who couldn't even have a funeral would be nice."
 	icon_state = "regret"
 	force = 38				//Lots of damage, way less DPS
 	damtype = RED_DAMAGE
