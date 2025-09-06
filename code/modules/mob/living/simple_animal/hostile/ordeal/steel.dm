@@ -98,7 +98,7 @@
 	..()
 //Activates the speed up.
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/handle_automated_action()
-	if(shotActive == TRUE || lastAttack + noAttackTime >= world.time)
+	if(shotActive == TRUE || lastAttack + noAttackTime <= world.time)
 		if(world.time >= speedUpCooldown)
 			visible_message(span_warning("[src] starts to move faster!"))
 			say("+RAAAGH!!+")
