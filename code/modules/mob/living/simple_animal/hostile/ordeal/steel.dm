@@ -84,8 +84,6 @@
 	var/timesShot = 0
 	//Times shot required before activating the speed up.
 	var/shotRequirement = 5
-	//Test var. Delete later.
-	var/timesActivated = 0
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/AttackingTarget(atom/attacked_target)
 	adjustBruteLoss(-10)
@@ -99,21 +97,19 @@
 	..()
 //Activates the speed up.
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/handle_automated_action()
-	if(timesShot >= shotRequirement || world.time + noAttackTime >= lastAttack)
+	if(timesShot >= shotRequirement || lastAttack + noAttackTime >= world.time)
 		if(world.time >= speedUpCooldown)
 			visible_message(span_warning("[src] starts to move faster!"))
+			say("+RAAAGH!!+")
 			var/speedUpDuration = 3 SECONDS
 			TemporarySpeedChange(-1.2, speedUpDuration)
-			//Resets the requirements to make sure it doesn't activate 500 times.
 			lastAttack = world.time
-			timesShot = 0
 			speedUpCooldown = world.time + speedUpCooldownDuration
-			//Test variable.
-			timesActivated = timesActivated + 1
 //Measures how many times the Steel Noon was shot.
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/bullet_act()
 	timesShot = timesShot + 1
-
+	if(timesShot >= shotRequirement)
+		timesShot = 0
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/proc/DeathExplosion()
 	if(QDELETED(src))
 		return
