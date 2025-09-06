@@ -110,7 +110,7 @@
 	..()
 //Measures how many times the Steel Noon was shot.
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/bullet_act()
-	timesShot = timesShot++
+	timesShot++
 	if(timesShot >= shotRequirement)
 		shotActive = TRUE
 		timesShot = 0
