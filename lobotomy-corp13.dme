@@ -3342,7 +3342,6 @@
 #include "code\modules\plumbing\plumbers\splitters.dm"
 #include "code\modules\plumbing\plumbers\synthesizer.dm"
 #include "code\modules\plumbing\plumbers\teleporter.dm"
-#include "code\modules\point\point.dm"
 #include "code\modules\power\apc.dm"
 #include "code\modules\power\cable.dm"
 #include "code\modules\power\cell.dm"
@@ -4518,3 +4517,4 @@
 #include "ModularLobotomy\workshop\templates\fishing\fishingweapons.dm"
 #include "ModularLobotomy\zTegu_overwrite\tegu_overwrite_vars.dm"
 // END_INCLUDE
+
