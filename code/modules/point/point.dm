@@ -106,4 +106,5 @@
 	point_at(target)
 
 	SEND_SIGNAL(src, COMSIG_MOB_POINTED, target)
+
 	return TRUE
