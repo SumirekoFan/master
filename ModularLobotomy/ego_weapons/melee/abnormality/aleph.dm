@@ -1513,7 +1513,7 @@
 	update_icon_state()
 	if(current_holder)
 		to_chat(current_holder,span_notice("[src] suddenly transforms!"))
-		baloon_alert(current_holder("[src] suddenly transforms!")
+		baloon_alert(current_holder, "[src] suddenly transforms!")
 		current_holder.update_inv_hands()
 		current_holder.playsound_local(current_holder, 'sound/effects/blobattack.ogg', 75, FALSE)
 	force = weapon_list[form][1]
@@ -1938,7 +1938,7 @@
 	hitsound = initial(hitsound)
 	if(current_holder)
 		to_chat(current_holder,span_notice("[src] returns to its original shape."))
-		baloon_alert(current_holder("[src] returns to it's original shape.")
+		baloon_alert(current_holder, "[src] returns to it's original shape.")
 		current_holder.update_inv_hands()
 		current_holder.playsound_local(current_holder, 'sound/weapons/ego/gasharpoon_transform.ogg', 75, FALSE)
 

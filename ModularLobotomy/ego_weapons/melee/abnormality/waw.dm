@@ -334,7 +334,7 @@
 			if(special_checks_faction && user.faction_check_mob(L))
 				continue
 			to_chat(L, span_userdanger("You are hit by [src]!"))
-			baloon_alert(L, span_userdanger("You are hit by [src]!")
+			baloon_alert(L, "You are hit by [src]!")
 			L.apply_damage(dealing_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 			dealing_damage = max(dealing_damage * 0.9, special_damage * 0.3)
