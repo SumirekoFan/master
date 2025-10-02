@@ -1,4 +1,4 @@
-GLOBAL_VAR_INIT(typing_indicator_overlay, mutable_appearance('ModularLobotomy/modules/typing_indicator/icons/typing_indicator.dmi', "default0", FLY_LAYER))
+GLOBAL_VAR_INIT(typing_indicator_overlay, mutable_appearance('ModularLobotomy/typing_indicator/icons/typing_indicator.dmi', "default0", FLY_LAYER))
 
 /mob
 	var/typing_indicator = FALSE
