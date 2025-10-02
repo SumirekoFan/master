@@ -818,7 +818,7 @@
 	special_attack = !special_attack
 	if(special_attack)
 		to_chat(user, span_notice("You prepare a special attack."))
-		balooon_alert(user, "You prepare a special attack.")
+		balloon_alert(user, "You prepare a special attack.")
 	else
 		to_chat(user, span_notice("You decide to not use the special attack."))
 		balloon_alert(user, "You decide to not use the special attakc.")

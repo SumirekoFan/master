@@ -1,4 +1,4 @@
-f/obj/item/ego_weapon/training
+/obj/item/ego_weapon/training
 	name = "training hammer"
 	desc = "E.G.O intended for Manager Education"
 	icon_state = "training"
@@ -707,7 +707,7 @@ f/obj/item/ego_weapon/training
 	..()
 	if(combo_on)
 		to_chat(user,span_warning("You swap your grip, and will no longer perform a finisher."))
-		balloon_alert(uesr, "You swap your grip, and will no longer perform a finisher.")
+		balloon_alert(user, "You swap your grip, and will no longer perform a finisher.")
 		combo_on = FALSE
 		return
 	if(!combo_on)
