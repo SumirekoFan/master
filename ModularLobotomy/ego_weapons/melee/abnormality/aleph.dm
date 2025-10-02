@@ -296,7 +296,7 @@
 	addtimer(CALLBACK(src, PROC_REF(ReadyNotesWarning), user, sfx), sfx_delay)
 	addtimer(CALLBACK(src, PROC_REF(ReadyNotesWarning), user, sfx), sfx_delay * 2)
 	to_chat(user, span_nicegreen("You are ready to begin the performance anew - [src] is ready to manifest more notes."))
-	baloon_alert(user, "You are ready to begin the performance anew - [src] is ready to manifest more notes.")
+	balloon_alert(user, "You are ready to begin the performance anew - [src] is ready to manifest more notes.")
 
 /// This proc sends a specified sound to the user, directly, and flashes their screen with a colour.
 /obj/item/ego_weapon/da_capo/proc/ReadyNotesWarning(mob/living/user, sound/sfx)
@@ -315,7 +315,7 @@
 	music_notes_ring.BecomeVisibleToUser(subject)
 
 	to_chat(subject, span_notice("You resonate with [src], manifesting musical notes around yourself."))
-	baloon_alert(subject, "You resonate with [src], manifesting musical notes around yourself.")
+	balloon_alert(subject, "You resonate with [src], manifesting musical notes around yourself.")
 	playsound(src, 'sound/magic/summonitems_generic.ogg', 65, FALSE, -5)
 
 	// Spawn the notes!
@@ -380,7 +380,7 @@
 			var/victim_biotypes = L.mob_biotypes
 
 			to_chat(L, span_userdanger("The music of the apocalypse pierces through you!"))
-			baloon_alert(L, "The music of the apocalypse pierces through you!")
+			balloon_alert(L, "The music of the apocalypse pierces through you!")
 			L.deal_damage(final_damage, damtype)
 			// If we're hitting a target with enough max hp, who is an organic mob, and was either deleted or killed by the attack, we headbomb them.
 			// This is purely aesthetic.
@@ -412,7 +412,7 @@
 		rgb_color_values += current_movement * 30
 		filters += filter(type="drop_shadow", x=0, y=0, size=current_movement - 1, offset = 1, color=rgb(rgb_color_values, rgb_color_values, rgb_color_values))
 	to_chat(user, span_nicegreen(movement_progress_chat_alert_string))
-	baloon_alert(user, movement_progress_chat_alert_string)
+	balloon_alert(user, movement_progress_chat_alert_string)
 
 /// Sets a timer for your Movement to expire if you don't refresh it in time. Unrelated to the basic 3hit combo.
 /obj/item/ego_weapon/da_capo/proc/StartMovementTimeoutCountdown(mob/living/carbon/human/user)
@@ -424,7 +424,7 @@
 	filters = null
 	current_movement = 1
 	to_chat(user, span_nicegreen("Da capo - the scythe's power wanes and its influence recedes. You begin anew at the First Movement.")) // Why nicegreen? All the other Movement messages use it, so it's easier to track in chat.
-	baloon_alert(user, "Da Capo - The Scythe's power wanes and it's influence recedes. You begin anew the First Movement.")
+	balloon_alert(user, "Da Capo - The Scythe's power wanes and it's influence recedes. You begin anew the First Movement.")
 	deltimer(movement_timer)
 	if(music_notes_ring && !(music_notes_ring.has_notes_remaining))
 		RingCleanup(music_notes_ring)
@@ -678,7 +678,7 @@
 		target.visible_message(span_danger("[user] rears up and slams into [target]!"), \
 						span_userdanger("[user] punches you with everything you got!!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
 		to_chat(user, span_danger("You throw your entire body into this punch!"))
-		baloon_alert(user, "You throw your entire body into this punch!")
+		balloon_alert(user, "You throw your entire body into this punch!")
 		goldrush_damage = force
 		//I gotta regrab  justice here
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
@@ -695,7 +695,7 @@
 		goldrush_damage = initial(goldrush_damage)
 	else
 		to_chat(user, "<span class='spider'><b>Your attack was interrupted!</b></span>")
-		baloon_alert(user, "Your attack was interrupted!")
+		balloon_alert(user, "Your attack was interrupted!")
 		return
 
 /obj/item/ego_weapon/goldrush/attackby(obj/item/I, mob/living/user, params)
@@ -704,7 +704,7 @@
 		return
 	new /obj/item/ego_weapon/goldrush/nihil(get_turf(src))
 	to_chat(user,span_warning("The [I] seems to drain all of the light away as it is absorbed into [src]!"))
-	baloon_alert(user, "The [I] seems to drain all of the light away as it was abosrbed into [src]!")
+	balloon_alert(user, "The [I] seems to drain all of the light away as it was abosrbed into [src]!")
 	playsound(user, 'sound/abnormalities/nihil/filter.ogg', 15, FALSE, -3)
 	qdel(I)
 	qdel(src)
@@ -781,7 +781,7 @@
 			force = 80
 			icon_state = "rosered"
 	to_chat(user, span_notice("[src] will now deal [force] [damtype] damage."))
-	baloon_alert(user, "[src] will now deal [force] [damtype] damage.")
+	balloon_alert(user, "[src] will now deal [force] [damtype] damage.")
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
 
 /obj/item/ego_weapon/censored
@@ -821,7 +821,7 @@
 		balooon_alert(user, "You prepare a special attack.")
 	else
 		to_chat(user, span_notice("You decide to not use the special attack."))
-		baloon_alert(user, "You decide to not use the special attakc.")
+		balloon_alert(user, "You decide to not use the special attakc.")
 
 /obj/item/ego_weapon/censored/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(!CanUseEgo(user))
@@ -1105,13 +1105,13 @@
 	..()
 	if(transforming)
 		to_chat(user,span_warning("[src] will no longer transform to match the seasons."))
-		baloon_alert(user, "[src] will no longer transform to match the seasons.")
+		balloon_alert(user, "[src] will no longer transform to match the seasons.")
 		transforming = FALSE
 		special = "This E.G.O. will not transform to match the seasons."
 		return
 	if(!transforming)
 		to_chat(user,span_warning("[src] will now transform to match the seasons."))
-		baloon_alert(user, "[src] will now transform to match the seasons.")
+		balloon_alert(user, "[src] will now transform to match the seasons.")
 		transforming = TRUE
 		special = "This E.G.O. will transform to match the seasons."
 		return
@@ -1136,7 +1136,7 @@
 	update_icon_state()
 	if(current_holder)
 		to_chat(current_holder,span_notice("[src] suddenly transforms!"))
-		baloon_alert(current_holder("[src] suddenly transforms!"))
+		balloon_alert(current_holder("[src] suddenly transforms!"))
 		current_holder.update_inv_hands()
 		playsound(current_holder, "sound/abnormalities/seasons/[current_season]_change.ogg", 50, FALSE)
 	force = season_list[current_season][1]
@@ -1204,7 +1204,7 @@
 	. = ..()
 	if(user.get_inactive_held_item())
 		to_chat(user, span_notice("You cannot use [src] with only one hand!"))
-		baloon_alert(user, "You cannot use the [src] with only one hand!")
+		balloon_alert(user, "You cannot use the [src] with only one hand!")
 		return FALSE
 
 /obj/item/ego_weapon/shield/distortion/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
@@ -1259,7 +1259,7 @@
 		user.adjustBruteLoss(-10)
 		user.adjustSanityLoss(-15)
 		to_chat(user, span_notice("You reap the fruits of your labor!"))
-		baloon_alert(user, "You reap the fruits of your labor!")
+		balloon_alert(user, "You reap the fruits of your labor!")
 		..()
 		return
 	..()
@@ -1270,11 +1270,11 @@
 		return
 	if(ability_cooldown > world.time)
 		to_chat(user, span_warning("You have used this ability too recently!"))
-		baloon_alert(user, "You have used this ability too recently!")
+		balloon_alert(user, "You have used this ability too recently!")
 		return
 	playsound(src, 'sound/effects/ordeals/white/white_reflect.ogg', 50, TRUE)
 	to_chat(user, "You cultivate seeds of desires.")
-	baloon_alert(user, "You cultivate seeds of desires.")
+	balloon_alert(user, "You cultivate seeds of desires.")
 	ability_cooldown = world.time + ability_cooldown_time
 	spawn_plant(user, EAST, NORTH)
 	spawn_plant(user, WEST, NORTH)
@@ -1316,12 +1316,12 @@
 		return
 	if(ability_cooldown > world.time)
 		to_chat(user, span_warning("You have used this ability too recently!"))
-		baloon_alert(user, "You have used this ability too recently!")
+		balloon_alert(user, "You have used this ability too recently!")
 		return
 	if(do_after(user, 20, src))
 		playsound(src, 'sound/weapons/ego/spicebush_special.ogg', 50, FALSE)
 		to_chat(user, "You plant some flower buds.")
-		baloon_alert(user, "You plant some flower buds.")
+		balloon_alert(user, "You plant some flower buds.")
 		spawn_plant(user, EAST, NORTH)//spawns one spicebush plant 2 tiles away in each corner
 		spawn_plant(user, WEST, NORTH)
 		spawn_plant(user, EAST, SOUTH)
@@ -1513,7 +1513,7 @@
 	update_icon_state()
 	if(current_holder)
 		to_chat(current_holder,span_notice("[src] suddenly transforms!"))
-		baloon_alert(current_holder, "[src] suddenly transforms!")
+		balloon_alert(current_holder, "[src] suddenly transforms!")
 		current_holder.update_inv_hands()
 		current_holder.playsound_local(current_holder, 'sound/effects/blobattack.ogg', 75, FALSE)
 	force = weapon_list[form][1]
@@ -1657,7 +1657,7 @@
 					user.changeNext_move(CLICK_CD_MELEE * 4)
 					if(!smashing)
 						to_chat(user,span_warning("The whip starts to thrash around uncontrollably!"))
-						baloon_alert(user, "The whip starts to trash around uncontrollably!")
+						balloon_alert(user, "The whip starts to trash around uncontrollably!")
 						Smash(user, target)
 				else
 					build_up -= (0.1/3)//sortof silly but its a way to fix each whip hit from increasing build up 3 times as it should.
@@ -1736,7 +1736,7 @@
 	update_icon_state()
 	if(current_holder)
 		to_chat(current_holder,span_notice("[src] suddenly transforms!"))
-		baloon_alert(current_holder, "[src] suddenly transforms!")
+		balloon_alert(current_holder, "[src] suddenly transforms!")
 		current_holder.update_inv_hands()
 		current_holder.playsound_local(current_holder, 'sound/effects/blobattack.ogg', 75, FALSE)
 	force = weapon_list[form][1]
@@ -1924,7 +1924,7 @@
 	reach = weapon_list[form][3]
 	hitsound = weapon_list[form][4]
 	to_chat(current_holder, span_notice(weapon_list[form][5]))
-	baloon_alert(current_holder, weapon_list[form][5])
+	balloon_alert(current_holder, weapon_list[form][5])
 
 /obj/item/ego_weapon/shield/gasharpoon/proc/Revert()
 	if(!form)//is it not transformed?
@@ -1938,7 +1938,7 @@
 	hitsound = initial(hitsound)
 	if(current_holder)
 		to_chat(current_holder,span_notice("[src] returns to its original shape."))
-		baloon_alert(current_holder, "[src] returns to it's original shape.")
+		balloon_alert(current_holder, "[src] returns to it's original shape.")
 		current_holder.update_inv_hands()
 		current_holder.playsound_local(current_holder, 'sound/weapons/ego/gasharpoon_transform.ogg', 75, FALSE)
 
@@ -1965,7 +1965,7 @@
 	if(!istype(P, matching_armor))
 		Revert()
 		to_chat(current_holder,span_notice("[src] appears unable to release its full potential."))
-		baloon_alert(current_holder, "[src] appears unable to release it's full potential.")
+		balloon_alert(current_holder, "[src] appears unable to release it's full potential.")
 		return FALSE
 	return TRUE
 
@@ -2030,7 +2030,7 @@
 		return
 	if(dash_cooldown > world.time)
 		to_chat(user, "<span class='warning'>Your dash is still recharging!")
-		baloon_alert(user, "Your dash is still recharging!")
+		balloon_alert(user, "Your dash is still recharging!")
 		return
 	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
 		return
@@ -2042,7 +2042,7 @@
 		A.attackby(src,user)
 	playsound(src, 'sound/abnormalities/clownsmiling/jumpscare.ogg', 50, FALSE, 9)
 	to_chat(user, "<span class='warning'>You dash to [A]!")
-	baloon_alert(user, "You dash to [A]!")
+	balloon_alert(user, "You dash to [A]!")
 
 /obj/item/ego_weapon/faith
 	name = "starbound faith"
@@ -2133,17 +2133,17 @@
 	var/mob/living/carbon/human/wielder = user
 	if(!(wielder.has_status_effect(/datum/status_effect/starcultist)))
 		to_chat(wielder, span_warning("The staff refuses to answer your calling. Reject not the truth of the Stars."))
-		baloon_alert(wielder, "The staff refuses to answer your calling. Reject not the truth of the Stars.")
+		balloon_alert(wielder, "The staff refuses to answer your calling. Reject not the truth of the Stars.")
 		return
 	if(ritual_active || ritual_ongoing)
 		return
 	var/cultist_in_ritual = cultist_check(wielder)
 	if(cultist_in_ritual < 1)
 		to_chat(wielder, span_warning("The staff shines briefly then fizzles out, unable to reach fellow followers of the Star."))
-		baloon_alert(wielder, "The staff shines briefly then fizzles out, unable to reach fellow followers of the Star.")
+		balloon_alert(wielder, "The staff shines briefly then fizzles out, unable to reach fellow followers of the Star.")
 		return
 	to_chat(wielder, span_warning("The staff vibrates in your hands, trying to reach towards all followers of the Star."))
-	baloon_alert(wielder, "The staff vibrates in your hands, trying to reach towardsa ll followers of the Star.")
+	balloon_alert(wielder, "The staff vibrates in your hands, trying to reach towardsa ll followers of the Star.")
 	playsound(user, 'sound/weapons/plasma_cutter.ogg', 100, TRUE)
 	start_ritual(wielder)
 
@@ -2164,7 +2164,7 @@
 	ritual_synchronization = TRUE
 	ritual_ongoing = TRUE
 	to_chat(user, span_notice("You feel that a ritual is already underway nearby, and your staff attunes to it."))
-	baloon_alert(user, "You feel that a ritual is already underway nearby, and your staff attunes to it")
+	balloon_alert(user, "You feel that a ritual is already underway nearby, and your staff attunes to it")
 	for(var/i = 1 to 12)
 		if(!user)
 			reset()
@@ -2177,11 +2177,11 @@
 	ritual_ongoing = FALSE
 	if(ritual_active)
 		to_chat(user, span_nicegreen("Your staff thrums with energy."))
-		baloon_alert(user, "Your staff thrums with energy.")
+		balloon_alert(user, "Your staff thrums with energy.")
 	else
 		playsound(user, 'sound/effects/zzzt.ogg', 60, TRUE)
 		to_chat(user, span_warning("The light in your staff fizzles out, something must have gone wrong."))
-		baloon_alert(user, "The light in your staff fizzles out, something must have gone wrong.")
+		balloon_alert(user, "The light in your staff fizzles out, something must have gone wrong.")
 /obj/item/ego_weapon/faith/proc/start_ritual(mob/living/user)
 	ritual_master = TRUE
 	ritual_ongoing = TRUE
@@ -2195,7 +2195,7 @@
 			return
 		if(!do_after(user, 2 SECONDS))
 			to_chat(user, span_danger("You lose your focus, and the ritual is cut short!"))
-			baloon_alert(user, "You lose your focus, and the ritual is cut short!")
+			balloon_alert(user, "You lose your focus, and the ritual is cut short!")
 			break
 		playsound(user, 'sound/effects/curse5.ogg', 60, TRUE)
 		if((cultist_check(user) < 1 + i))
@@ -2225,16 +2225,16 @@
 	switch(ritual_level)
 		if(1)
 			to_chat(user, span_nicegreen("Your staff slightly loosens its grasp on the holy marble and you feel a surge of courage coursing through you."))
-			baloon_alert(user, "Your staff slightly loosens it's grasp on the holy marble and you feel a surge of courage coursing through you.")
+			balloon_alert(user, "Your staff slightly loosens it's grasp on the holy marble and you feel a surge of courage coursing through you.")
 			healing = TRUE
 		if(2)
 			to_chat(user, span_nicegreen("Your staff loosens its grasp on the holy marble and its light invigorates your every swing."))
-			baloon_alert(user, "Your staff loosens it's grasp on the holy marble and it's light invigorates your every swing.")
+			balloon_alert(user, "Your staff loosens it's grasp on the holy marble and it's light invigorates your every swing.")
 			healing = TRUE
 			force += 25
 		if(3)
 			to_chat(user, span_nicegreen("The Star is unbound if only for a moment, illuminating your path with its majestic light and empowering your attacks with otherwordly energy."))
-			baloon_alert(user, "The Star is unbound if only for a moment, illuminating your path with it's majestic light and empowering your attacks with otherworldy energy.")
+			balloon_alert(user, "The Star is unbound if only for a moment, illuminating your path with it's majestic light and empowering your attacks with otherworldy energy.")
 			icon_state = "awakened_faith"
 			healing = TRUE
 			force += 45
