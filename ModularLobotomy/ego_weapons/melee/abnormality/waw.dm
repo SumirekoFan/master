@@ -720,7 +720,7 @@
 	var/obj/item/ego_weapon/mini/malice/component = I
 	theweapon.force_multiplier = max(component.force_multiplier, force_multiplier)
 	to_chat(user, span_notice("You combine [src] and [I] to create [theweapon]!"))
-	baloon_alert(user "You combine [src] and [I] to create [theweapon]!")
+	baloon_alert(user, "You combine [src] and [I] to create [theweapon]!")
 	qdel(I)
 	qdel(src)
 
