@@ -235,7 +235,7 @@
 		return
 	var/mob/living/carbon/human/H = owner
 	to_chat(H, span_warning("Your shield has worn off."))
-	baloon_alert(H, "Your shield has worn off.)
+	baloon_alert(H, "Your shield has worn off.")
 	H.physiology.pale_mod *= 1.1
 	return ..()
 
