@@ -424,7 +424,7 @@
 	filters = null
 	current_movement = 1
 	to_chat(user, span_nicegreen("Da capo - the scythe's power wanes and its influence recedes. You begin anew at the First Movement.")) // Why nicegreen? All the other Movement messages use it, so it's easier to track in chat.
-	balloon_alert(user, "Da Capo - The Scythe's power wanes and it's influence recedes. You begin anew the First Movement.")
+	balloon_alert(user, "Da Capo - The Scythe's power wanes and itss influence recedes. You begin anew at the First Movement.")
 	deltimer(movement_timer)
 	if(music_notes_ring && !(music_notes_ring.has_notes_remaining))
 		RingCleanup(music_notes_ring)
