@@ -1136,7 +1136,7 @@
 	update_icon_state()
 	if(current_holder)
 		to_chat(current_holder,span_notice("[src] suddenly transforms!"))
-		balloon_alert(current_holder("[src] suddenly transforms!"))
+		balloon_alert(current_holder, "[src] suddenly transforms!")
 		current_holder.update_inv_hands()
 		playsound(current_holder, "sound/abnormalities/seasons/[current_season]_change.ogg", 50, FALSE)
 	force = season_list[current_season][1]
