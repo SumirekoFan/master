@@ -2468,6 +2468,7 @@
 		owner.balloon_alert("[wiper] wipes the muck off of you.")
 	else
 		owner.visible_message(span_nicegreen("[owner] wipes the muck off themselves."), span_nicegreen("You wipe the muck off yourself."))
+		wiper.balloon_alert("You wipe the muck off yourself.")
 	qdel(src)
 	return TRUE
 
