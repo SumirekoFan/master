@@ -226,7 +226,7 @@
 		return
 	var/mob/living/carbon/human/H = owner
 	to_chat(H, span_nicegreen("A shield increases your resistance to pale damage!"))
-	balloon_alert(H, "A shield increases your resistance to pale damage!")
+	H.balloon_alert("A shield increases your resistance to pale damage!")
 	H.physiology.pale_mod /= 1.1
 	return ..()
 
@@ -235,7 +235,7 @@
 		return
 	var/mob/living/carbon/human/H = owner
 	to_chat(H, span_warning("Your shield has worn off."))
-	balloon_alert(H, "Your shield has worn off.")
+	H.balloon_alert("Your shield has worn off.")
 	H.physiology.pale_mod *= 1.1
 	return ..()
 

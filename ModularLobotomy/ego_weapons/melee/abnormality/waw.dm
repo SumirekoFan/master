@@ -2455,7 +2455,7 @@
 	if(wiper != owner)
 		owner.visible_message(span_notice("[wiper] begins to clean the muck off [owner]."), span_notice("You begin to wipe the muck off [owner]."), ignored_mobs = owner)
 		to_chat(owner, span_notice("[wiper] begins to wipe the muck off of you."))
-		balloon_alert(owner, "[wiper] begins to wipe the muck off of you.")
+		owner.balloon_alert("[wiper] begins to wipe the muck off of you.")
 	else
 		owner.visible_message(span_notice("[owner] begins to wipe the muck off themselves."), span_notice("You begin to wipe the muck off yourself."))
 	if(!do_after(wiper, 5, owner))
@@ -2465,7 +2465,7 @@
 	if(wiper != owner)
 		owner.visible_message(span_nicegreen("[wiper] wipes the muck off [owner]."), span_nicegreen("You wipe the muck off [owner]."), ignored_mobs = owner)
 		to_chat(owner, span_nicegreen("[wiper] wipes the muck off of you."))
-		balloon_alert(owner, "[wiper] wipes the muck off of you.")
+		owner.balloon_alert("[wiper] wipes the muck off of you.")
 	else
 		owner.visible_message(span_nicegreen("[owner] wipes the muck off themselves."), span_nicegreen("You wipe the muck off yourself."))
 	qdel(src)
