@@ -1,4 +1,3 @@
-
 /// Should distort someone into any mob.
 /datum/smite/distortanymob
 	name = "Distort Into Any Mob"
@@ -24,4 +23,4 @@
 	message_admins("[key_name_admin(usr)] is causing [key_name(target)] to distort.") //Extra logging to make ABSOLUTELY SURE that admins see this
 	log_admin("[key_name(usr)] caused [key_name(target)] to distort.")
 	target.BecomeDistortion(chosen_distortion, instant, forced)
-  
+
