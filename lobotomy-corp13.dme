@@ -162,6 +162,7 @@
 #include "code\__DEFINES\dcs\signals_fish.dm"
 #include "code\__DEFINES\research\anomalies.dm"
 #include "code\__DEFINES\~lobotomy_defines\signals.dm"
+#include "code\__DEFINES\~lobotomy_defines\traits.dm"
 #include "code\__DEFINES\~lobotomy_defines\_patreon.dm"
 #include "code\__DEFINES\~lobotomy_defines\abnormalities.dm"
 #include "code\__DEFINES\~lobotomy_defines\adventure.dm"
