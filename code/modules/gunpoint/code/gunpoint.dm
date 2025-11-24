@@ -17,6 +17,8 @@
 	var/obj/item/gun/G = get_active_held_item()
 	if(istype(G, /obj/item/gun))
 		DoGunpoint(A, G)
+	else if(istype(G, /obj/item/ego_weapon/ranged)) //Adding this so it also includes L.C.13 weapons because who's gonna get an S.S.13 Revolver in this day and age? But still leaving it also on in case someone needs it for some reason.
+		DoGunpoint(A, G)
 	else
 		src.pointed(A)
 	return
