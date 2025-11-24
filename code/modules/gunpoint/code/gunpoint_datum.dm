@@ -91,7 +91,7 @@
 			return
 		locked = TRUE
 		log_combat(target, source, "locked onto with aiming")
-		playsound(get_turf(source), 'modular_skyrat/modules/gunpoint/sound/targeton.ogg', 50,1)
+		playsound(get_turf(source), 'code/modules/gunpoint/sound/targeton.ogg', 50,1)
 		to_chat(source, "<span class='notice'><b>You lock onto [target.name]!</b></span>")
 		target.visible_message("<span class='warning'><b>[source.name] holds [target.name] at gunpoint with the [aimed_gun.name]!</b></span>", "<span class='userdanger'>[source.name] holds you at gunpoint with the [aimed_gun.name]!</span>")
 		if(target.gunpointed.len == 1)//First case
@@ -139,7 +139,7 @@
 
 /datum/gunpoint/proc/ClickDestroy()
 	if(locked)
-		playsound(get_turf(source), 'modular_skyrat/modules/gunpoint/sound/targetoff.ogg', 50,1)
+		playsound(get_turf(source), 'code/modules/gunpoint/sound/targetoff.ogg', 50,1)
 	qdel(src)
 
 /datum/gunpoint/proc/SourceCC(datum/source, amount, update, ignore)
@@ -151,7 +151,7 @@
 	log_combat(target, source, "auto-shot with aim")
 	aimed_gun.afterattack(target, source)
 
-/datum/gunpoint/proc/RadioReact(datum/datum_source, obj/item/radio/radio, message, channel, list/spans, datum/language/language, direct)
+/datum/gunpoint/proc/RadioReact(datum/datum_source, obj/item/radio, message, channel, list/spans, datum/language/language, direct)
 	if(!allow_radio && CanReact())
 		if(direct)
 			source.log_message("[source] shot [target] because they spoke on radio", LOG_ATTACK)
