@@ -23,8 +23,8 @@
 
 	var/moved_counter = 0
 
-	var/static/radio_forbid = image(icon = 'code/modules/gunpoint/icons/radial_gunpoint.dmi', icon_state = "radial_radio_forbid")
-	var/static/radio_allow = image(icon = 'code/modules/gunpoint/icons/radial_gunpoint.dmi', icon_state = "radial_radio")
+	//var/static/radio_forbid = image(icon = 'code/modules/gunpoint/icons/radial_gunpoint.dmi', icon_state = "radial_radio_forbid")
+	//var/static/radio_allow = image(icon = 'code/modules/gunpoint/icons/radial_gunpoint.dmi', icon_state = "radial_radio")
 	var/static/use_forbid = image(icon = 'code/modules/gunpoint/icons/radial_gunpoint.dmi', icon_state = "radial_use_forbid")
 	var/static/use_allow = image(icon = 'code/modules/gunpoint/icons/radial_gunpoint.dmi', icon_state = "radial_use")
 	var/static/move_forbid = image(icon = 'code/modules/gunpoint/icons/radial_gunpoint.dmi', icon_state = "radial_move_forbid")
@@ -188,36 +188,37 @@
 
 /datum/gunpoint/proc/SourceUpdatedResting(datum/datum_source, resting)
 	if(resting)
-		qdel(src)
+		qdel(src)	
 
 /datum/gunpoint/proc/ConstructChoiceList()
-	var/image/radio_image = (allow_radio ? radio_allow : radio_forbid)
+	//var/image/radio_image = (allow_radio ? radio_allow : radio_forbid)
 	var/image/use_image = (allow_use ? use_allow : use_forbid)
 	var/image/move_image = (allow_move ? move_allow : move_forbid)
-	var/list/L = list("radio" = radio_image, "use" = use_image, "move" = move_image)
+	var/list/L = list("use" = use_image, "move" = move_image)
 	return L
 
 /datum/gunpoint/proc/GunpointGuiReact(mob/living/user,choice)
 	switch(choice)
-		if("radio")
-			allow_radio = !allow_radio
-			if(allow_radio)
-				var/safe = TRUE
-				for(var/datum/gunpoint/gp in target.gunpointed)
-					if(gp.allow_radio == FALSE)
-						safe = FALSE
-						break
-				if(safe)
-					to_chat(target, "<span class='notice'>[source.name] signals you can <b>use radio</b>.</span>")
-				else
-					to_chat(target, "<span class='danger'>[source.name] signals you can use radio, however other people still don't</span>")
-			else
-				var/forbid_counts = 0
-				for(var/datum/gunpoint/gp in target.gunpointed)
-					if(gp.allow_radio == FALSE)
-						forbid_counts += 1
-				if(forbid_counts == 1) //Only first one warns the victim
-					to_chat(target, "<span class='danger'>[source.name] signals you can't <b>use radio</b>.</span>")
+	//Radio Reaction is currently broken.
+	//	if("radio")
+	//		allow_radio = !allow_radio
+	//		if(allow_radio)
+	//			var/safe = TRUE
+	//			for(var/datum/gunpoint/gp in target.gunpointed)
+	//				if(gp.allow_radio == FALSE)
+	//					safe = FALSE
+	//					break
+	//			if(safe)
+	//				to_chat(target, "<span class='notice'>[source.name] signals you can <b>use radio</b>.</span>")
+	//			else
+	//				to_chat(target, "<span class='danger'>[source.name] signals you can use radio, however other people still don't</span>")
+	//		else
+	//			var/forbid_counts = 0
+	//			for(var/datum/gunpoint/gp in target.gunpointed)
+	//				if(gp.allow_radio == FALSE)
+	//					forbid_counts += 1
+	//			if(forbid_counts == 1) //Only first one warns the victim
+	//				to_chat(target, "<span class='danger'>[source.name] signals you can't <b>use radio</b>.</span>")
 		if("use")
 			allow_use = !allow_use
 			if(allow_use)
