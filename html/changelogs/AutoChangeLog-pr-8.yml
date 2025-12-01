@@ -1,0 +1,10 @@
+author: "EnderMage99"
+delete-after: True
+changes:
+  - rscadd: "The Pianist - new ALEPH musical distortion with melody mechanics, damage immunity system, and multiple attack patterns"
+  - rscadd: "Music Note mobs, Reverting Song status (enables damage but increases vulnerability), and Musical Fascination effect"
+  - soundadd: "Pianist theme loop and combat sound effects"
+  - imageadd: "256x256 pianist sprite, music notes, and visual effect assets"
+  - balance: "Black Silence gloves bypass immunity (10x damage), Silence mask reduces damage by 80%"
+  - balance: "Music Notes heal SP based on Reverting Song stacks (10% per stack, max 80%)"
+  - code_imp: "Player-controlled Pianists get enhanced vision (13x13) and custom global message broadcasting"

@@ -1578,17 +1578,19 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	if(!damage_amount) // There are some extremely rare instances of 0 damage pre-armour reduction, for example King of Greed does a 0 damage HurtInTurf to fill up a hitlist to attack later.
 		return FALSE
 
-	// We have already run the shuffler in the mob/living/carbon deal_damage that called this proc. Any incoming damage has already been shuffled (if it is enabled, anyhow).
+	if(GLOB.damage_type_shuffler?.is_enabled && IsColorDamageType(damage_type)) // Yes I have to do yet another shuffler check here because god damn it we're handling human damage in the species datum
+		var/datum/damage_type_shuffler/shuffler = GLOB.damage_type_shuffler
+		damage_type = shuffler.mapping_offense[damage_type]
+
+	// We will now send a signal that gives listeners the opportunity to cancel the damage being dealt. For some reason, in the original apply_damage, this happens before a "final damage" calculation, so I have chosen to preserve that behaviour.
+	// Some examples of the listeners that may return COMPONENT_MOB_DENY_DAMAGE are manager shields, the Welfare Core reward, or Sweeper Persistence.
+	var/signal_return = SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMGE, damage_amount, damage_type, def_zone)
+	if(signal_return & COMPONENT_MOB_DENY_DAMAGE)
+		return FALSE
 
 	// Automatically run an armour check for the provided damage type if we weren't already provided with a blocked value, and if we aren't taking BRUTE damage.
 	if((isnull(blocked)) && (damage_type != BRUTE))
 		blocked = H.run_armor_check(def_zone, damage_type)
-
-	// We will now send a signal that gives listeners the opportunity to cancel the damage being dealt. For some reason, in the original apply_damage, this happens before a "final damage" calculation, so I have chosen to preserve that behaviour.
-	// Some examples of the listeners that may return COMPONENT_MOB_DENY_DAMAGE are manager shields, the Welfare Core reward, or Sweeper Persistence.
-	var/signal_return = SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMGE, damage_amount, damage_type, def_zone, wound_bonus, bare_wound_bonus, sharpness)
-	if(signal_return & COMPONENT_MOB_DENY_DAMAGE)
-		return FALSE
 
 	var/hit_percent = (100-(blocked+armor))/100
 	hit_percent = (hit_percent * (100-H.physiology.damage_resistance))/100

@@ -1,0 +1,5 @@
+author: "Destrok171"
+delete-after: True
+changes:
+  - bugfix: "Hitting a carbon will correctly shuffle damage when the trait is enabled"
+  - refactor: "Moved the shuffling for carbons from mob/living/carbon/deal_damage into datum/species/apply_damage"
