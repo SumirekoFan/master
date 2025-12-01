@@ -188,7 +188,7 @@
 
 /datum/gunpoint/proc/SourceUpdatedResting(datum/datum_source, resting)
 	if(resting)
-		qdel(src)	
+		qdel(src)
 
 /datum/gunpoint/proc/ConstructChoiceList()
 	//var/image/radio_image = (allow_radio ? radio_allow : radio_forbid)
