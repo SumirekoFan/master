@@ -1893,10 +1893,10 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-/obj/item/ego_weapon/mini/voodoo
-	name = "voodoo"
+/obj/item/ego_weapon/mini/gofer
+	name = "Go Fer Scissors"
 	desc = "What seems to be a giant half of a scissors pair."
-	icon_state = "voodoo"
+	icon_state = "voodoo" //I can change the icon state name later if you want, but I'm on the middle of City of Light and it's too much work to open Dream Maker, sorry...
 	special = "This weapon can be paired with a second copy to use both at the same time."
 	force = 18
 	swingstyle = WEAPONSWING_LARGESWEEP
@@ -1909,12 +1909,12 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-/obj/item/ego_weapon/mini/voodoo/attack(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/mini/gofer/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return
 	var/combo = FALSE
 	var/mob/living/carbon/human/myman = user
-	var/obj/item/ego_weapon/mini/voodoo/Y = myman.get_inactive_held_item()
+	var/obj/item/ego_weapon/mini/gofer/Y = myman.get_inactive_held_item()
 	if(istype(Y)) //dual wielding? if so...
 		combo = TRUE //hits twice, you're spending more PE then you would getting a WAW anyways
 	..()
