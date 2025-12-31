@@ -1,6 +1,0 @@
-author: "Destrok171"
-delete-after: True
-changes:
-  - rscadd: "AEDD E.G.O. armour Realization and its interaction with AEDD E.G.O. weapon."
-  - imageadd: "Added LCE AEDD icons, used for AEDD realization."
-  - refactor: "In datum/species/proc/apply_damage, armour check is now performed after sending the damage signal."

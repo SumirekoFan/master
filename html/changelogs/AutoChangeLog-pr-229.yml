@@ -1,6 +1,0 @@
-author: "Destrok171"
-delete-after: True
-changes:
-  - rscadd: "Assimilation ability for Scorching Desperation: can assimilate an ALEPH weapon into a Waxen Pinion weapon"
-  - balance: "Lowered Overheat realized ability cooldown from 5m -> 2.5m"
-  - refactor: "Realized armours now have both a realized ability var and an assimilation ability var, so they can have both. Changed previous realizations with an assimilation to use the new var, so if someone wants to add a proper ability for them later they're free to."

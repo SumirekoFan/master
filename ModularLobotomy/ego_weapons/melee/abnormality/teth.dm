@@ -39,6 +39,7 @@
 /obj/item/ego_weapon/shield/lutemia
 	name = "dear lutemia"
 	desc = "Don't you want your cares to go away?"
+	special = "Blocking with this weapon attacks all nearby targets."
 	icon_state = "lutemia"
 	force = 22
 	attack_speed = 1
@@ -57,7 +58,15 @@
 	block_cooldown_message = "You rearm your blade."
 
 /obj/item/ego_weapon/shield/lutemia/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
-	return 0 //Prevents ranged  parry
+	if(attack_type == MELEE_ATTACK && active_block)
+		for(var/mob/living/L in range(1, owner))
+			if(L == owner)
+				continue
+			if(owner.stat != DEAD)
+				attack(L, owner)
+				sleep(2)
+	return ..()
+
 
 /obj/item/ego_weapon/eyes
 	name = "red eyes"
@@ -189,30 +198,13 @@
 /obj/item/ego_weapon/sorrow
 	name = "sorrow"
 	desc = "It all returns to nothing."
-	special = "Use this weapon in hand to take damage and teleport to a random department."
 	icon_state = "sorrow"
-	force = 32					//Bad DPS, can teleport
-	attack_speed = 1.5
+	force = 35 //You get Giga DPS
+	stuntime = 3	//but a short stun
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("cleaves", "cuts")
 	attack_verb_simple = list("cleave", "cut")
 	hitsound = 'sound/weapons/fixer/generic/blade4.ogg'
-
-/obj/item/ego_weapon/sorrow/attack_self(mob/living/user)
-	var/area/turf_area = get_area(get_turf(user))
-	if(istype(turf_area, /area/fishboat))
-		to_chat(user, span_warning("[src] will not work here!."))
-		balloon_alert(user, "[src] will not work here!.")
-		return
-	if(do_after(user, 50, src))	//Five seconds of not doing anything, then teleport.
-		new /obj/effect/temp_visual/dir_setting/ninja/phase/out (get_turf(user))
-		user.adjustBruteLoss(user.maxHealth*0.3)
-
-		//teleporting half
-		var/turf/T = pick(GLOB.department_centers)
-		user.forceMove(T)
-		new /obj/effect/temp_visual/dir_setting/ninja/phase (get_turf(user))
-		playsound(src, 'sound/effects/contractorbatonhit.ogg', 100, FALSE, 9)
 
 /obj/item/ego_weapon/sorority
 	name = "sorority"
