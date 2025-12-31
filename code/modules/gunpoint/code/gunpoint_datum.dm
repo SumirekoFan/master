@@ -49,31 +49,31 @@
 		target.gp_effect = new
 		target.vis_contents += target.gp_effect
 
-	RegisterSignal(target, COMSIG_MOVABLE_MOVED, .proc/MovedReact)
-	RegisterSignal(source, COMSIG_MOVABLE_MOVED, .proc/SourceMoved)
 
-	RegisterSignal(target, COMSIG_MOB_FIRED_GUN, .proc/UseReact)
+	RegisterSignal(target, COMSIG_MOVABLE_MOVED, PROC_REF(MovedReact))
+	RegisterSignal(source, COMSIG_MOVABLE_MOVED, PROC_REF(SourceMoved))
 
-	RegisterSignal(source, COMSIG_LIVING_STATUS_STUN, .proc/SourceCC)
-	RegisterSignal(source, COMSIG_LIVING_STATUS_KNOCKDOWN, .proc/SourceCC)
-	RegisterSignal(source, COMSIG_LIVING_STATUS_PARALYZE, .proc/SourceCC)
-	RegisterSignal(source, COMSIG_LIVING_UPDATED_RESTING, .proc/SourceUpdatedResting)
+	RegisterSignal(target, COMSIG_MOB_FIRED_GUN, PROC_REF(UseReact))
 
-	RegisterSignal(aimed_gun, COMSIG_ITEM_EQUIPPED,.proc/ClickDestroy)
-	RegisterSignal(aimed_gun, COMSIG_ITEM_DROPPED,.proc/ClickDestroy)
+	RegisterSignal(source, COMSIG_LIVING_STATUS_STUN, PROC_REF(SourceCC))
+	RegisterSignal(source, COMSIG_LIVING_STATUS_KNOCKDOWN, PROC_REF(SourceCC))
+	RegisterSignal(source, COMSIG_LIVING_STATUS_PARALYZE, PROC_REF(SourceCC))
+	RegisterSignal(source, COMSIG_LIVING_UPDATED_RESTING, PROC_REF(SourceUpdatedResting))
 
-	RegisterSignal(target, COMSIG_MOVABLE_RADIO_TALK_INTO,.proc/RadioReact)
+	RegisterSignal(aimed_gun, COMSIG_ITEM_EQUIPPED, PROC_REF(ClickDestroy))
+	RegisterSignal(aimed_gun, COMSIG_ITEM_DROPPED, PROC_REF(ClickDestroy))
 
-	RegisterSignal(target, COMSIG_MOB_ITEM_ATTACK, .proc/UseReact)
-	RegisterSignal(target, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, .proc/MeleeAttackReact)
-	RegisterSignal(target, COMSIG_ITEM_ATTACK_SELF, .proc/UseReact)
-	RegisterSignal(target, COMSIG_MOB_ITEM_AFTERATTACK, .proc/UseReact)
+	RegisterSignal(target, COMSIG_MOVABLE_RADIO_TALK_INTO, PROC_REF(RadioReact))
 
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/Destroy)
-	RegisterSignal(source, COMSIG_PARENT_QDELETING, .proc/Destroy)
+	RegisterSignal(target, COMSIG_MOB_ITEM_ATTACK, PROC_REF(UseReact))
+	RegisterSignal(target, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, PROC_REF(MeleeAttackReact))
+	RegisterSignal(target, COMSIG_ITEM_ATTACK_SELF, PROC_REF(UseReact))
+	RegisterSignal(target, COMSIG_MOB_ITEM_AFTERATTACK, PROC_REF(UseReact))
 
+	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(Destroy))
+	RegisterSignal(source, COMSIG_PARENT_QDELETING, PROC_REF(Destroy))
 
-	addtimer(CALLBACK(src, .proc/LockOn), 7)
+	addtimer(CALLBACK(src, PROC_REF(LockOn), 7))
 
 /datum/gunpoint/proc/MeleeAttackReact(datum/source_datum, atom/target)
 	if(!CheckContinuity())
