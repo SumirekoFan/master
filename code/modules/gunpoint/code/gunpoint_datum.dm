@@ -98,7 +98,7 @@
 			to_chat(target, "<span class='danger'>You'll <b>get shot</b> if you <b>use radio</b>, <b>move</b> or <b>interact with items</b>!</span>")
 			to_chat(target, "<span class='notice'>You can however take items out, toss harmless items or drop them.</span>")
 		var/list/choice_list = ConstructChoiceList()
-		gunpoint_gui = show_radial_menu_gunpoint(source, target , choice_list, select_proc = CALLBACK(src, .proc/GunpointGuiReact, source), radius = 42)
+		gunpoint_gui = show_radial_menu_gunpoint(source, target , choice_list, select_proc = CALLBACK(src, PROC_REF(GunpointGuiReact), source), radius = 42)
 		if(target.gp_effect.icon_state != "locked")
 			target.gp_effect.icon_state = "locked"
 		safeguard_time = world.time + 30
