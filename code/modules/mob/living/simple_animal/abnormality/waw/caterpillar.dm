@@ -48,10 +48,10 @@
 
 //These two overrides prevent it from attacking anyone.
 /mob/living/simple_animal/hostile/abnormality/caterpillar/FindTarget(list/possible_targets, HasTargetsList = 0)
-    return FALSE
+	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/caterpillar/AttackingTarget()
-  return FALSE
+	return FALSE
 
 //Set a smoker timer for 15 seconds
 /mob/living/simple_animal/hostile/abnormality/caterpillar/BreachEffect()
