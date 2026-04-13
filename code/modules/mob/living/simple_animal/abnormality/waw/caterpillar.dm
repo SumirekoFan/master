@@ -44,6 +44,15 @@
 	var/darts_smoked	//how many times you didnt' work repression
 	var/can_counter = TRUE
 
+
+
+//These two overrides prevent it from attacking anyone.
+/mob/living/simple_animal/hostile/abnormality/caterpillar/FindTarget(list/possible_targets, HasTargetsList = 0)
+    return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/caterpillar/AttackingTarget()
+  return FALSE
+
 //Set a smoker timer for 15 seconds
 /mob/living/simple_animal/hostile/abnormality/caterpillar/BreachEffect()
 	icon = 'ModularLobotomy/_Lobotomyicons/64x96.dmi'
