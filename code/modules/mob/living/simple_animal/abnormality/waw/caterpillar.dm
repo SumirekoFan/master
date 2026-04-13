@@ -20,7 +20,7 @@
 
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
-	faction = list("neutral", "hostile")
+	faction = list("hostile")
 	start_qliphoth = 1
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 75,
