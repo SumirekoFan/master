@@ -54,22 +54,32 @@
 							TEMPERANCE_ATTRIBUTE = 40
 							)
 	var/homing = FALSE
-	fire_sound = 'sound/weapons/gun/shotgun/shot.ogg'
+	fire_sound = 'sound/magic/staff_change.ogg'
+	alternate_fire_name = "Homing"
+	alternate_shotsleft = 10
+	alternate_projectile_path = /obj/projectile/ego_bullet/ego_galaxy/homing
+	alternate_fire_sound = 'sound/magic/charge.ogg'
+	alternate_fire_sound_volume = 70
+	alternate_toggle_sound = 'sound/magic/wand_teleport.ogg'
+	alternate_toggle_sound_volume = 65
+	alternate_toggle_enabled_message = span_notice("You channel your energy, enabling homing.")
+	alternate_toggle_disabled_message = span_notice("You release your energy, and turn off homing.")
 
-/obj/item/ego_weapon/ranged/galaxy/attack_self(mob/user)
-	..()
+/obj/item/ego_weapon/ranged/galaxy/EnableAltfire(mob/user, silent = TRUE)
+	. = ..()
 	if(homing)
-		to_chat(user,span_warning("You release your energy, and turn off homing."))
 		fire_delay = 15
 		projectile_path = initial(projectile_path)
-		homing = FALSE
 		return
+
+/obj/item/ego_weapon/ranged/galaxy/DisableAltfire(mob/user, silent = TRUE)
+	. = ..()
 	if(!homing)
-		to_chat(user,span_warning("You channel your energy, enabling homing."))
 		fire_delay = 20
-		projectile_path = /obj/projectile/ego_bullet/ego_galaxy/homing
 		homing = TRUE
 		return
+
+
 
 /obj/item/ego_weapon/ranged/unrequited
 	name = "unrequited love"
