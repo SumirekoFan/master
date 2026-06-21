@@ -104,6 +104,9 @@
 					cleaned_human.regenerate_icons()
 					to_chat(cleaned_human, span_danger("[src] flawlessly cleans you of your features!"))
 					ADD_TRAIT(cleaned_human, TRAIT_DISFIGURED, TRAIT_GENERIC) //cleans your face of uneeded features
+
+/mob/living/simple_animal/hostile/abnormality/cleaner/moved()
+	..()
 	move_to_delay = 3
 
 /mob/living/simple_animal/hostile/abnormality/cleaner/update_icon_state()
