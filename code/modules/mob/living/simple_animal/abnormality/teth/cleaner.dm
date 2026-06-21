@@ -7,6 +7,7 @@
 	portrait = "cleaner"
 	maxHealth = 800
 	health = 800
+	move_to_delay = 1.2
 	ranged = TRUE
 	attack_verb_continuous = "cleans"
 	attack_verb_simple = "cleans"
@@ -70,6 +71,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/cleaner/Move()
 	..()
+	move_to_delay = 1.2
 	//Toss meatbags aside
 	for(var/mob/living/carbon/human/H in range(1, src))
 		if(H.stat >= SOFT_CRIT)
@@ -102,6 +104,7 @@
 					cleaned_human.regenerate_icons()
 					to_chat(cleaned_human, span_danger("[src] flawlessly cleans you of your features!"))
 					ADD_TRAIT(cleaned_human, TRAIT_DISFIGURED, TRAIT_GENERIC) //cleans your face of uneeded features
+	move_to_delay = 3
 
 /mob/living/simple_animal/hostile/abnormality/cleaner/update_icon_state()
 	if(status_flags & GODMODE)
