@@ -105,7 +105,7 @@
 					to_chat(cleaned_human, span_danger("[src] flawlessly cleans you of your features!"))
 					ADD_TRAIT(cleaned_human, TRAIT_DISFIGURED, TRAIT_GENERIC) //cleans your face of uneeded features
 
-/mob/living/simple_animal/hostile/abnormality/cleaner/moved()
+/mob/living/simple_animal/hostile/abnormality/cleaner/Moved()
 	..()
 	move_to_delay = 3
 
