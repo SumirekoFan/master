@@ -1,0 +1,6 @@
+author: "yuraizz"
+delete-after: True
+changes:
+  - imageadd: "Added alt_diffraction to ego_gifts.dmi"
+  - imageadd: "Added lampswipe_r_large, lampswipe_r, lampswipe_l_large, lampswipe_l, pvswipe_r, pvswipe_l to weaponanim_96x96.dmi"
+  - imageadd: "Added pvthrust to weaponanim_64x32.dmi"
