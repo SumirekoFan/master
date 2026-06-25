@@ -1,0 +1,4 @@
+author: "Destrok171"
+delete-after: True
+changes:
+  - bugfix: "Zwei West Knight Greatsword no longer lets you visually channel lightning when held in the left hand."
