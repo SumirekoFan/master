@@ -1,0 +1,5 @@
+author: "Deadkung"
+delete-after: True
+changes:
+  - imagedel: "previous thumb_east_podao_closed and thumb_east_podao_open"
+  - imageadd: "thumb_east_podao_closed and thumb_thumb_east_podao_open"
