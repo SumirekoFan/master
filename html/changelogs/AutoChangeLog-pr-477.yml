@@ -1,4 +1,0 @@
-author: "Destrok171"
-delete-after: True
-changes:
-  - bugfix: "Cryopods will no longer announce the storage of Test Range Agents, Tutorial Agents, Records Librarians or Refraction Railway Agents. In addition, when these people are stored, it will not attempt to match their real name to existing records in the data core and try to free up a slot for their job if it finds a match."
