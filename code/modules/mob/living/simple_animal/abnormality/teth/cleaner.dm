@@ -20,6 +20,7 @@
 	speech_span = SPAN_ROBOT
 	vision_range = 14
 	aggro_vision_range = 20
+	patrol_cooldown_time = 5 SECONDS
 
 	can_breach = TRUE
 	threat_level = TETH_LEVEL
