@@ -1,0 +1,5 @@
+author: "Destrok171"
+delete-after: True
+changes:
+  - rscadd: "Facility i-575 'BOTANICAL' makes its return from the archive. Map made by ScarSkits, I have adjusted it to be feature-complete for current LC13."
+  - imageadd: "Alternate darker sprite for the Template Vendor (Grid Crafting)."
