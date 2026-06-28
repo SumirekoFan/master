@@ -1,0 +1,5 @@
+author: "Kitsunemitsu"
+delete-after: True
+changes:
+  - balance: "Tangle is now more dangerous"
+  - bugfix: "fixed tangle's sprite"
