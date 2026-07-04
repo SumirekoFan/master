@@ -1,5 +1,0 @@
-author: "Megasonic-Aegidia"
-delete-after: True
-changes:
-  - code_imp: "Updated realizer.dm and realized.dm"
-  - imageadd: "Added sole_focus to the realization.dmi and realized.dmi"
