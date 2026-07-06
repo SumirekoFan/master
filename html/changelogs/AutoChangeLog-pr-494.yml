@@ -1,4 +1,0 @@
-author: "Destrok171"
-delete-after: True
-changes:
-  - bugfix: "For...in loops that were pointing at GLOB.huds adjusted, now correctly giving the key to the datum and then assigning the datum to a variable for use. (This means HUDs are fixed)"
