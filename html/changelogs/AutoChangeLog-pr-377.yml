@@ -1,5 +1,0 @@
-author: "Destrok171"
-delete-after: True
-changes:
-  - rscadd: "New UI for E.G.O. purchase console (old still available with a preference)"
-  - refactor: "EO tablet refactored to have an internal purchase console with a special subtype, so they work off the same code"
