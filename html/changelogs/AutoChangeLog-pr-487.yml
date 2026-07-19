@@ -1,0 +1,5 @@
+author: "Destrok171"
+delete-after: True
+changes:
+  - rscadd: "You can now get an optional Abnormality Work Tool that lets you interface with the work UI without touching the work console. Use it on an Abno or in-hand to access it. The type (clipboard, tablet or none) you get is determined by a character preference."
+  - refactor: "Plushie Extractor's typepath changed from /obj/item/device/plushie_extractor to /obj/item/plushie_extractor to kill off the empty /device/ type."
