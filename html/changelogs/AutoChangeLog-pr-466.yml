@@ -1,5 +1,0 @@
-author: "Kitsunemitsu"
-delete-after: True
-changes:
-  - rscadd: "Added Rocket Noons to green Noon."
-  - code_imp: "Moves rocket noon code from Grungeon to Green noon"
