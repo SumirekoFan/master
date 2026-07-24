@@ -1,0 +1,4 @@
+author: "Kitsunemitsu"
+delete-after: True
+changes:
+  - balance: "Blue star damage is now capped out at 200"
