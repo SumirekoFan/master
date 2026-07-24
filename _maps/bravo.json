@@ -1,9 +1,9 @@
 {
 	"version": 1,
-	"map_name": "Facility D-069 DEFENSE",
-	"map_path": "map_files/Delta",
+	"map_name": "Facility B-939 BRAVO",
+	"map_path": "map_files/LC13/Bravo-Bravo",
 	"map_file": [
-		"deltacorp.dmm"
+		"bravo.dmm"
 	],
 	"traits": [
 		{

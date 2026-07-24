@@ -1,9 +1,9 @@
 {
 	"version": 1,
 	"map_name": "Facility L-120 LUMERY",
-	"map_path": "map_files/Lumery",
+	"map_path": "map_files/LC13/Lima-Lumery",
 	"map_file": [
-		"LumeryCorp.dmm"
+		"lima.dmm"
 	],
 	"traits": [
 		{

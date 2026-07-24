@@ -1,9 +1,9 @@
 {
 	"version": 1,
 	"map_name": "Facility A-098 ALPHA",
-	"map_path": "map_files/Alpha",
+	"map_path": "map_files/LC13/Alpha-Alpha",
 	"map_file": [
-		"alphacorp.dmm"
+		"alpha.dmm"
 	],
 	"traits": [
 		{

@@ -1,9 +1,9 @@
 {
 	"version": 1,
-	"map_name": "City Of Light",
-	"map_path": "map_files/City",
+	"map_name": "Facility C-211 AXIS",
+	"map_path": "map_files/LC13/Charlie-Axis",
 	"map_file": [
-		"city.dmm"
+		"charlie.dmm"
 	],
 	"traits": [
 		{
@@ -13,5 +13,5 @@
 	"space_ruin_levels": 0,
 	"space_empty_levels": 0,
 	"minetype": "none",
-	"maptype": "city"
+	"maptype": "standard"
 }
