@@ -1,4 +1,0 @@
-author: "Destrok171"
-delete-after: True
-changes:
-  - bugfix: "Fixes bug introduced in Blitz vote PR, Ordeals will no longer display earlier than intended while they're still timelocked."
