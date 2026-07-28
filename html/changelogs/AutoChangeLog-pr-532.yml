@@ -1,0 +1,5 @@
+author: "Croissant-Man"
+delete-after: True
+changes:
+  - imageadd: "Added sprites signifying when Big and Will Be Bad Wolf has eaten someone"
+  - imageadd: "Added directional sprites for all of Big and Will Be Bad Wolf's sprite states (for his upcoming arrival to LCL)"
