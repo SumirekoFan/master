@@ -1,0 +1,13 @@
+author: "EnderMage99"
+delete-after: True
+changes:
+  - rscadd: "New ghost game mode — Refraction Railway, an authored boss-rush at the refraction hub. Re-runnable, party-based, with its own leaderboard."
+  - rscadd: "Starlight currency + Starlight Extraction gacha for cosmetic ID card skins (1-pull 50 SL / 10-pull 500 SL; 10-pulls guarantee a rare; duplicates refund Starlight)."
+  - rscadd: "Two lines — Nova Flare (3 sectors, intro line) and Curtain Call (5-act play themed line, every node a boss fight, ending on a multi-wave Serio Zeal finale)."
+  - rscadd: "Per-mob achievement framework; achievements unlock for earning after the first clear of a line."
+  - rscadd: "Records terminal — top 50 runs per line, sorted by total time, with per-sector + per-room time splits and per-player loadout icons. Also viewable mid-run from each sector's advance console."
+  - rscadd: "Persistence for mob reveals — fighting a mob once permanently flips its card in the hub."
+  - rscadd: "Visual ID Card Skin catalogue in character preferences; job-spawn applies the equipped skin cosmetically."
+  - imageadd: "New refracted-variant sprites under `ModularLobotomy/_Lobotomyicons/`."
+  - soundadd: "Five Red Mist EGO cues plus seven gacha SFX."
+  - code_imp: "New `/datum/refraction_run` / `/datum/refraction_line` / `/datum/refraction_node` / `/datum/id_skin` / `/datum/gacha_banner` datum tree plus `SSrefraction_railway`."
