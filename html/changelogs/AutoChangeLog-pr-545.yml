@@ -1,0 +1,5 @@
+author: "Destrok171"
+delete-after: True
+changes:
+  - bugfix: "Aiming at obscured/dark tiles will no longer send your projectile in the completely wrong direction. Courtesy of TGStation PR #64147 ."
+  - code_imp: "in_view_range replaced with CAN_I_SEE, CAN_THEY_SEE, CAN_SEE_RANGED view helpers. In essence, viewers() is used to check for visibility now. Courtesy of TGStation PR #82767."
