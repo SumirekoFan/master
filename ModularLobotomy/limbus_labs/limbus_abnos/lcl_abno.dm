@@ -3,6 +3,7 @@
 /mob/living/simple_animal/hostile/limbus_abno
 	name = "Limbus specimen"
 	desc = "Unidentified creature."
+	gender = NEUTER
 	maxHealth = 400
 	health = 400
 	melee_damage_lower = 1
