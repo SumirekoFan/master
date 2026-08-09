@@ -1,6 +1,7 @@
 /mob/living/simple_animal/hostile/abnormality
 	name = "Abnormality"
 	desc = "An abnormality..? You should report this to the Head!"
+	gender = NEUTER
 	robust_searching = TRUE
 	ranged_ignores_vision = TRUE
 	stat_attack = HARD_CRIT
